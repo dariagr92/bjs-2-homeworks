@@ -23,7 +23,34 @@ function solveEquation(a, b, c) {
 
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  let totalAmount;
+  let totalAmount, percentCh, contributionCh, amountCh, dateCh;
+  percentCh = Number(percent);
+  contributionCh = Number(contribution);
+  amountCh = Number(amount);
+  dateCh = Number(date);
+
+  if (typeof percentCh !== 'Number'){
+        console.log(`Параметр "Процентная ставка" содержит неправильное значение "${percent}"`); 
+  }
+  if (typeof contributionCh !== 'Number'){
+    console.log(`Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`); 
+  }
+  if (typeof amountCh !== 'Number'){
+    console.log(`Параметр "Общая стоимость" содержит неправильное значение "${amount}"`); 
+  }
+  if (typeof dateCh !== 'Number'){
+    console.log(`Параметр "Дата" содержит неправильное значение "${date}"`); 
+  }
+
+  let dateNow = Date.now;
+  let term, creditBody, P, payment, totalSumm;
+  term = (dateCh - dateNow())/1000/60/60/24/30;
+  creditBody = amountCh - contributionCh;
+  P = percentCh / 1200;
+  payment = creditBody * (P + (P / (((1 + P)**term) - 1)));
+  totalSumm = payment * term;
+  totalAmount = totalSumm.toFixed(2);
+ 
 
   // код для задачи №2 писать здесь
 
