@@ -11,6 +11,10 @@ function compareArrays(arr1, arr2) {
 function advancedFilter(arr) {
   let resultArr;
 
+  const sortArr = arr.filter((number) => number > 0);
+  const sortArr2 = sortArr.filter((number) => number % 3 === 0);
+  resultArr = sortArr2.map((number) => number * 10);
+
   // Ваш код
 
   return resultArr; // array
