@@ -76,10 +76,13 @@ class Library {
   }  
 
   findBookBy(type, value){
-    
+    const result = this.books.find(book => book[type] === value);
+    if (result === undefined) {return null};
+    return result;
   }
 
   giveBookByName(bookName){
+    
 
   }
 }
