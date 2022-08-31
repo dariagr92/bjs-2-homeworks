@@ -1,9 +1,10 @@
 //1
 function parseCount(num) {
-    if (!(Number.parseInt(num))){
+    let res = Number.parseInt(num);
+    if (!res){
        throw new Error ("Невалидное значение");
     }
-    return (Number.parseInt(num));
+    return res;
 }
 
 
@@ -26,7 +27,7 @@ class Triangle {
         this.c = c;
     
     
-        if (!((this.c < (this.a + this.b)) && (this.b < (this.a + this.c)) && (this.a < (this.b + this.c)))){
+        if (!((c < (a + b)) && (b < (a + c)) && (a < (b + c)))){
             throw new Error("Треугольник с такими сторонами не существует");
         }
     }
