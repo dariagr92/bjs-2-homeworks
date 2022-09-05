@@ -65,11 +65,26 @@ setTimeout(upgradedSendSignal, 4400); // Сигнал отправлен так 
 setTimeout(upgradedSendSignal, 4500); 
 
 
-function debounceDecorator2(debounceDecoratorNew) {
- let count = 0;
- function wrapper(...args) {
-  wrapper.history = count++;
-  return  debounceDecoratorNew.call(this, ...args);
- }
- return wrapper; 
-}
+function debounceDecoratorNew2(f, ms) { 
+
+  let timerId = null;
+  nextCall = false;
+  wrapper.count = 0;
+
+  function wrapper(...args) {
+    ++wrapper.count;
+    if (nextCall == false) {
+      f.apply(this,...args);
+      nextCall = true;
+      return;
+    }
+
+    clearTimeout(timerId);
+
+    timerId = setTimeout(()=> {
+      nextCall = false;
+      f.apply(this,...args)
+    }, ms)
+    }
+    return wrapper;
+  }
